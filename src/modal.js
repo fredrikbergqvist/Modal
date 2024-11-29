@@ -65,6 +65,23 @@ const modalStyles = `
 </style>
 `;
 
+/**
+ * @class NidhuggModal
+ * @extends HTMLElement
+ * @description Custom element for creating a modal dialog
+ * @example
+ * <nidhugg-modal>
+ *   <h2 slot="header">Modal Header</h2>
+ *   <p slot="content">Modal Content</p>
+ *   <button slot="footer">Close</button>
+ * </nidhugg-modal>
+ *
+ * @public
+ * @method open - Opens the modal dialog
+ * @method showModal - Displays the modal dialog
+ * @method close - Closes the modal dialog
+ *
+ */
 class NidhuggModal extends HTMLElement {
   static observedAttributes = ["open"];
   constructor() {
@@ -72,6 +89,9 @@ class NidhuggModal extends HTMLElement {
     this.close = this.close.bind(this);
   }
 
+  open() {
+    this.showModal();
+  }
   showModal() {
     const dialog = this.shadowRoot.querySelector("dialog");
     if(dialog) {
@@ -81,7 +101,6 @@ class NidhuggModal extends HTMLElement {
   }
 
   close()  {
-    console['log']('🐵: close', );
     const dialog = this.shadowRoot.querySelector("dialog");
     if(dialog) {
       dialog.style.opacity = "0";

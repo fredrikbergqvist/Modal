@@ -1,10 +1,10 @@
 {
   "name": "leonardo",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Fredrik Bergqvist",
-  "main": "./src/nidhugg-modal.js",
-  "module": "./src/nidhugg-modal.js",
+  "main": "./src/modal.js",
+  "module": "./src/modal.js",
   "scripts": {},
   "dependencies": {},
   "devDependencies": {  }

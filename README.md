@@ -43,3 +43,21 @@ The modal will also add the `nidhugg-modal-open`-class to the body when it is op
      width: 100vw;
  }
 ```
+
+## Methods
+
+The modal has three methods, two inherited from the Modal element:
+
+- `showModal()`: Opens the modal
+- `close()`: Closes the modal
+
+I also added a `open()`-method that can be used to open the modal.
+
+```javascript
+//Open, no difference between the methods
+document.querySelector('#modal-1').open();
+document.querySelector('#modal-1').showModal();
+
+//Close
+document.querySelector('#modal-1').close();
+``` 
