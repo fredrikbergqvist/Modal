@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "exports": "./src/nidhugg-modal.js",
   "author": "Fredrik Bergqvist",
+  "description": "A modal dialog web component",
   "license": "MIT",
   "publish": {
     "include": [

@@ -145,16 +145,7 @@ class NidhuggModal extends HTMLElement {
     });
   }
 
-  disconnectedCallback() {
-    console.log("Custom element removed from page.");
-  }
-
-  adoptedCallback() {
-    console.log("Custom element moved to new page.");
-  }
-
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log(`Attribute ${name} has changed.`);
     const dialog = this.shadowRoot && this.shadowRoot.querySelector("dialog");
     if(!dialog) {
       return;

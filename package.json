@@ -7,5 +7,5 @@
   "module": "./src/nidhugg-modal.js",
   "scripts": {},
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {  }
 }

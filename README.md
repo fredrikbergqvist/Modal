@@ -8,7 +8,7 @@ A basic web component for creating modals.
 2. Add the `nidhugg-modal` element to your HTML file.
 3. Add content to the modal using the `header`, `content`, and `footer` slots.
     
-    ```html
+ ```html
 <nidhugg-modal id="modal-1" open>
   <h2 slot="header">Hello World</h2>
   <p slot="content">This is a test of the Nidhugg Modal</p>
