@@ -1,0 +1,17 @@
+{
+  "name": "@nidhugg/modal",
+  "version": "0.0.1",
+  "exports": "./nidhugg-modal.js",
+  "author": "Fredrik Bergqvist",
+  "license": "MIT",
+  "publish": {
+    "include": [
+      "LICENSE",
+      "README.md",
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "test/**/*"
+    ]
+  }
+}
