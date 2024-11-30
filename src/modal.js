@@ -10,7 +10,7 @@ const modalStyles = `
     width: 20rem;
     padding: 0;
     background-color: var(--nidhugg-base-100, #2A303C);
-    color: var(--nidhugg-base-content, #f2f2f2);
+    color: var(--nidhugg-base-content, #B2CCD6);
     border-radius: var(--nidhugg-rounded, 0.5rem);
     border: 2px solid var(--nidhugg-neutral, #1C212B);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
@@ -36,7 +36,7 @@ const modalStyles = `
   }
   .nidhugg-modal__dialog button {
     background-color: var(--nidhugg-base-100, #2A303C);
-    color: var(--nidhugg-base-content, #f2f2f2);
+    color: var(--nidhugg-base-content, #B2CCD6);
     transition: background-color, color 0.3s ease-in-out;
     border:none;
     border-radius: 50%;
@@ -50,7 +50,7 @@ const modalStyles = `
     cursor: pointer;
     &:hover {
       color: var(--nidhugg-base-200, #242933);
-      background-color: var(--nidhugg-base-content, #f2f2f2);
+      background-color: var(--nidhugg-base-content, #B2CCD6);
     }
   }
   

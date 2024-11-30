@@ -4,7 +4,9 @@ A basic web component for creating modals.
 
 ## Basic usage
 
-1. Include the script in your HTML file:
+1. Include the script in your HTML file by importing the `nidhugg-modal.js` file.
+   - _Note:_ The js file is not minified, so ideally you should minify it and add it to your bundle before using it in 
+     production.
 2. Add the `nidhugg-modal` element to your HTML file.
 3. Add content to the modal using the `header`, `content`, and `footer` slots.
     
