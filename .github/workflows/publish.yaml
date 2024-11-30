@@ -9,6 +9,8 @@ on:
       - 'CHANGELOG.md'
 jobs:
   semantic_release:
+    permissions:
+      id-token: write
     name: Semantic release
     runs-on: ubuntu-latest
     steps:
@@ -24,17 +26,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npx semantic-release
 
-  publish_jsr:
-    name: Publish to JSR
-    needs: semantic_release
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      id-token: write
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Publish package
-        run: npx jsr publish
+#  publish_jsr:
+#    name: Publish to JSR
+#    needs: semantic_release
+#    runs-on: ubuntu-latest
+#
+#    permissions:
+#      contents: read
+#      id-token: write
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Publish package
+#        run: npx jsr publish
