@@ -5,7 +5,10 @@
   "author": "Fredrik Bergqvist",
   "description": "A modal dialog web component",
   "license": "MIT",
-  "repository": "https://github.com/fredrikbergqvist/NidhuggModal.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fredrikbergqvist/NidhuggModal.git"
+  },
   "main": "./src/modal.js",
   "module": "./src/modal.js",
   "scripts": {},
