@@ -62,7 +62,6 @@
           }
         }
       ],
-      "@sebbo2002/semantic-release-jsr",
       [
         "@semantic-release/changelog",
         {
@@ -71,6 +70,7 @@
       ],
       "@semantic-release/github",
       [
+				"@sebbo2002/semantic-release-jsr",
         "@semantic-release/git",
         {
           "assets": [
