@@ -68,9 +68,9 @@
           "changelogFile": "CHANGELOG.md"
         }
       ],
+			"@sebbo2002/semantic-release-jsr",
       "@semantic-release/github",
       [
-				"@sebbo2002/semantic-release-jsr",
         "@semantic-release/git",
         {
           "assets": [
