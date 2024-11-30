@@ -1,19 +1,19 @@
 {
-  "name": "@nidhugg/modal",
-  "version": "0.2.1",
-  "exports": "./src/modal.ts",
-  "author": "Fredrik Bergqvist",
-  "description": "A modal dialog web component",
-  "license": "MIT",
-  "publish": {
-    "include": [
-      "LICENSE",
-      "README.md",
+	"name": "@nidhugg/modal",
+	"version": "0.2.1",
+	"exports": "./src/modal.js",
+	"author": "Fredrik Bergqvist",
+	"description": "A modal dialog web component",
+	"license": "MIT",
+	"publish": {
+		"include": [
+			"LICENSE",
+			"README.md",
 			"src/**/*.js",
 			"src/**/*.ts"
-    ],
-    "exclude": [
-      "test/**/*"
-    ]
-  }
+		],
+		"exclude": [
+			"test/**/*"
+		]
+	}
 }
