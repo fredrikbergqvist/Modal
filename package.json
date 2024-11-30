@@ -1,5 +1,5 @@
 {
-  "name": "leonardo",
+  "name": "nidhugg-modal",
   "private": false,
   "version": "0.1.1",
   "author": "Fredrik Bergqvist",
@@ -11,7 +11,10 @@
   },
   "main": "./src/modal.js",
   "module": "./src/modal.js",
-  "scripts": {},
+  "scripts": {
+    "prettier:write": "yarn prettier --config ./.prettierrc --write ./**/*.{ts,css,js,html} --log-level warn",
+    "prettier:check": "yarn prettier --config ./.prettierrc --check ./src/**/*.{ts,css,js,html} --log-level warn"
+	},
   "devDependencies": {
     "@commitlint/cli": "19.6.0",
     "@commitlint/config-conventional": "19.6.0",
@@ -20,7 +23,9 @@
     "@semantic-release/commit-analyzer": "13.0.0",
     "@semantic-release/git": "10.0.1",
     "@semantic-release/github": "8.1.0",
-    "@semantic-release/release-notes-generator": "14.0.1"
+    "@semantic-release/release-notes-generator": "14.0.1",
+    "prettier": "3.4.1",
+    "typescript": "5.7.2"
   },
   "release": {
     "branches": [

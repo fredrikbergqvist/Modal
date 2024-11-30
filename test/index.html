@@ -1,48 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Nidhugg Modal</title>
-  <style>
-      :root{
-        --nidhugg-base-100:#2A303C;
-        --nidhugg-base-200:#242933;
-        --nidhugg-base-300:#20252E;
-        --nidhugg-base-content:#B2CCD6;
-        --nidhugg-neutral:#1C212B;
-        --nidhugg-neutral-content:#B2CCD6;
-        --nidhugg-rounded: 0.5rem;
-      }
+	<head>
+		<meta charset="UTF-8" />
+		<title>Nidhugg Modal</title>
+		<style>
+			:root {
+				--nidhugg-base-100: #2a303c;
+				--nidhugg-base-200: #242933;
+				--nidhugg-base-300: #20252e;
+				--nidhugg-base-content: #b2ccd6;
+				--nidhugg-neutral: #1c212b;
+				--nidhugg-neutral-content: #b2ccd6;
+				--nidhugg-rounded: 0.5rem;
+			}
 
-    .nidhugg-modal-open{
-        overflow: hidden;
-        filter: blur(2px);
-        height: 100vh;
-        width: 100vw;
-    }
+			.nidhugg-modal-open {
+				overflow: hidden;
+				filter: blur(2px);
+				height: 100vh;
+				width: 100vw;
+			}
 
-      body{
-          font-family: Arial, sans-serif;
-          background-color: #354238;
-      }
-    h2{
-        margin:0;
-    }
-  </style>
-  <script src="../src/nidhugg-modal.js"></script>
-</head>
-<body>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #354238;
+			}
+			h2 {
+				margin: 0;
+			}
+		</style>
+		<script src="../src/modal.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Nidhugg Modal</h1>
+		</header>
+		<main>
+			<button onclick="document.querySelector('#modal-1').showModal()">Open Modal with footer</button>
+			<button onclick="document.querySelector('#modal-2').open()">Modal with longer text</button>
+			<nidhugg-modal id="modal-1">
+				<h2 slot="header">Hello World</h2>
+				<p slot="content">This is a test of the Nidhugg Modal</p>
+				<button slot="footer" onclick="document.querySelector('#modal-1').close()">Close</button>
+			</nidhugg-modal>
+			<nidhugg-modal id="modal-2">
+				<h2 slot="header">Hello World</h2>
+				<div slot="content" style="max-width: 400px">
+					<blockquote>“Ph’nglui mglw’nafh Cthulhu R’lyeh wgah’nagl fhtagn.”</blockquote>
+					<p>Legrasse had one point in advance of Professor Webb, for several among his mongrel prisoners had repeated to him what older
+						celebrants had told them the words meant. This text, as given, ran something like this:</p>
+					<blockquote>“In his house at R’lyeh dead Cthulhu waits dreaming.”</blockquote></div>
+			</nidhugg-modal>
+		</main>
 
-<button onclick="document.querySelector('#modal-1').showModal()">Open Modal with footer</button>
-<button onclick="document.querySelector('#modal-2').showModal()">Open Modal without footer</button>
-<nidhugg-modal id="modal-1" open>
-  <h2 slot="header">Hello World</h2>
-  <p slot="content">This is a test of the Nidhugg Modal</p>
-  <button slot="footer" onclick="document.querySelector('#modal-1').close()">Close</button>
-</nidhugg-modal>
-<nidhugg-modal id="modal-2">
-  <h2 slot="header">Hello World</h2>
-  <p slot="content">I have no footer 😨</p>
-</nidhugg-modal>
-</body>
+	</body>
 </html>
