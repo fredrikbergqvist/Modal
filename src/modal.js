@@ -7,7 +7,7 @@ const modalStyles = `
     transform: scale(1);
     position: fixed;
     z-index: 10;
-    width: 20rem;
+    width: max-content;
     padding: 0;
     background-color: var(--nidhugg-base-100, #2A303C);
     color: var(--nidhugg-base-content, #B2CCD6);
@@ -53,7 +53,7 @@ const modalStyles = `
       background-color: var(--nidhugg-base-content, #B2CCD6);
     }
   }
-  
+
   .nidhugg-modal__dialog main {
     background-color: var(--nidhugg-base-100, #2A303C);
     padding: 0 1rem 1rem;
@@ -83,100 +83,105 @@ const modalStyles = `
  *
  */
 class NidhuggModal extends HTMLElement {
-  static observedAttributes = ["open"];
-  constructor() {
-    super();
-    this.close = this.close.bind(this);
-  }
+	static observedAttributes = ["open"];
+	constructor() {
+		super();
+		this.close = this.close.bind(this);
+	}
 
-  open() {
-    this.showModal();
-  }
-  showModal() {
-    const dialog = this.shadowRoot.querySelector("dialog");
-    if(dialog) {
-      dialog.showModal();
-      document.body.classList.add("nidhugg-modal-open");
-    }
-  }
+	open() {
+		this.showModal();
+	}
+	showModal() {
+		const dialog = this.shadowRoot.querySelector("dialog");
+		if (dialog) {
+			dialog.showModal();
+			document.body.classList.add("nidhugg-modal-open");
+		}
+	}
 
-  close()  {
-    const dialog = this.shadowRoot.querySelector("dialog");
-    if(dialog) {
-      dialog.style.opacity = "0";
-      dialog.style.transform = "scale(0)";
-      setTimeout(() => {
-        dialog.close();
-        document.body.classList.remove("nidhugg-modal-open");
-        dialog.style.opacity = "";
-        dialog.style.transform = "";
-      }, 300);
-    }
-  }
+	close() {
+		const dialog = this.shadowRoot.querySelector("dialog");
+		if (dialog) {
+			dialog.style.opacity = "0";
+			dialog.style.transform = "scale(0)";
+			setTimeout(() => {
+				dialog.close();
+				document.body.classList.remove("nidhugg-modal-open");
+				dialog.style.opacity = "";
+				dialog.style.transform = "";
+			}, 300);
+		}
+	}
 
-  populateElements() {
-    const headerTemplate = document.createElement('template');
-    const headingEl = `<header>
-      <button id="nidhugg-modal-close-btn" type="button" title="Close modal" autofocus>x</button>
-      <slot name="header"></slot>
-    </header>`;
+	populateElements() {
+		const headerTemplate = document.createElement("template");
 
-    const mainContentEl = `
-    <main class="nid-modal__main">
-      <slot name="content"></slot>
-    </main>`;
-
-    const footerEl = `
-    <footer class="nid-modal__footer">
-      <slot name="footer"></slot>
-    </footer>`;
-
-    headerTemplate.innerHTML = `${modalStyles}
+		headerTemplate.innerHTML = `${modalStyles}
     <dialog class="nidhugg-modal__dialog">
-      ${headingEl}${mainContentEl}${footerEl}
+    	<div>
+				<header>
+					<button id="nidhugg-modal-close-btn" type="button" title="Close modal" autofocus>x</button>
+					<slot name="header"></slot>
+				</header>
+				<main class="nid-modal__main">
+					<slot name="content"></slot>
+				</main>
+				<footer class="nid-modal__footer">
+					<slot name="footer"></slot>
+				</footer>
+      </div>
     </dialog>`;
 
-    this.shadowRoot.appendChild(headerTemplate.content.cloneNode(true));
-    if(this.hasAttribute("open")) {
-      this.showModal();
-    }
-  }
+		this.shadowRoot.appendChild(headerTemplate.content.cloneNode(true));
+		if (this.hasAttribute("open")) {
+			this.showModal();
+		}
+	}
 
+	connectedCallback() {
+		this.attachShadow({ mode: "open" });
+		this.populateElements();
 
-  connectedCallback() {
-    this.attachShadow({mode: 'open'});
-    this.populateElements();
+		const dialogCloseBtn = this.shadowRoot.querySelector("#nidhugg-modal-close-btn");
+		dialogCloseBtn.addEventListener("click", (e) => {
+			this.close();
+		});
+		const dialogEl = this.shadowRoot.querySelector(".nidhugg-modal__dialog");
+		dialogEl.addEventListener("cancel", (event) => {
+			event.preventDefault();
+			this.close();
+		});
+		dialogEl.addEventListener("close", (event) => {
+			event.preventDefault();
+			this.close();
+		});
+		dialogEl.addEventListener("mousedown", (event) => {
+			event.preventDefault();
+			if (event.target === dialogEl) {
+				this.close();
+			}
+			console["log"]("🐵: e", event.target, event);
+		});
+	}
 
-    const dialogCloseBtn = this.shadowRoot.querySelector("#nidhugg-modal-close-btn");
-    dialogCloseBtn.addEventListener("click", (e) => {
-      this.close();
-    });
-    const dialogEl = this.shadowRoot.querySelector(".nidhugg-modal__dialog");
-    dialogEl.addEventListener('cancel', (event) => {
-      event.stopPropagation();
-      event.preventDefault();
-      this.close();
-    });
-    dialogEl.addEventListener('close', (event) => {
-      event.stopPropagation();
-      event.preventDefault();
-      this.close();
-    });
-  }
+	attributeChangedCallback(name, oldValue, newValue) {
+		const dialog = this.shadowRoot && this.shadowRoot.querySelector(".nidhugg-modal__dialog");
+		if (!dialog) {
+			return;
+		}
+		if (name === "open") {
+			if (this.hasAttribute("open")) {
+				return dialog.showModal();
+			}
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    const dialog = this.shadowRoot && this.shadowRoot.querySelector("dialog");
-    if(!dialog) {
-      return;
-    }
-    if (name === "open") {
-      if (this.hasAttribute("open")) {
-        dialog.showModal();
-      } else {
-        dialog.close();
-      }
-    }
-  }
+			dialog.close();
+		}
+	}
+
+	dispatchEvent(event) {
+		return false;
+	}
 }
 
 customElements.define("nidhugg-modal", NidhuggModal);
