@@ -7,36 +7,49 @@ on:
       - 'package.json'
       - 'jsr.json'
       - 'CHANGELOG.md'
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
-  semantic_release:
-    permissions:
-      id-token: write
-    name: Semantic release
+#  semantic_release:
+#    permissions:
+#      id-token: write
+#    name: Semantic release
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 22.11.0
+#      - name: Install dependencies
+#        run: npm install --frozen-lockfile
+#      - name: Semantic release
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#        run: npx semantic-release
+
+  release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - uses: google-github-actions/release-please-action@v3
         with:
-          node-version: 22.11.0
-      - name: Install dependencies
-        run: npm install --frozen-lockfile
-      - name: Semantic release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx semantic-release
+          release-type: node
+          token: ${{ secrets.GH_TOKEN }}
+          package-name: release-please-action
 
-#  publish_jsr:
-#    name: Publish to JSR
-#    needs: semantic_release
-#    runs-on: ubuntu-latest
-#
-#    permissions:
-#      contents: read
-#      id-token: write
-#
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Publish package
-#        run: npx jsr publish
+  publish_jsr:
+    name: Publish to JSR
+    needs: semantic_release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish package
+        run: npx jsr publish
