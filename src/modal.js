@@ -84,6 +84,7 @@ const modalStyles = `
  */
 class NidhuggModal extends HTMLElement {
 	static observedAttributes = ["open"];
+
 	constructor() {
 		super();
 		this.close = this.close.bind(this);
@@ -92,8 +93,9 @@ class NidhuggModal extends HTMLElement {
 	open() {
 		this.showModal();
 	}
+
 	showModal() {
-		const dialog = this.shadowRoot.querySelector("dialog");
+		const dialog = this.shadowRoot?.querySelector("dialog");
 		if (dialog) {
 			dialog.showModal();
 			document.body.classList.add("nidhugg-modal-open");
@@ -101,7 +103,7 @@ class NidhuggModal extends HTMLElement {
 	}
 
 	close() {
-		const dialog = this.shadowRoot.querySelector("dialog");
+		const dialog = this.shadowRoot?.querySelector("dialog");
 		if (dialog) {
 			dialog.style.opacity = "0";
 			dialog.style.transform = "scale(0)";
@@ -133,7 +135,7 @@ class NidhuggModal extends HTMLElement {
       </div>
     </dialog>`;
 
-		this.shadowRoot.appendChild(headerTemplate.content.cloneNode(true));
+		this.shadowRoot?.appendChild(headerTemplate.content.cloneNode(true));
 		if (this.hasAttribute("open")) {
 			this.showModal();
 		}
@@ -143,25 +145,24 @@ class NidhuggModal extends HTMLElement {
 		this.attachShadow({ mode: "open" });
 		this.populateElements();
 
-		const dialogCloseBtn = this.shadowRoot.querySelector("#nidhugg-modal-close-btn");
-		dialogCloseBtn.addEventListener("click", (e) => {
+		const dialogCloseBtn = this.shadowRoot?.querySelector("#nidhugg-modal-close-btn");
+		dialogCloseBtn?.addEventListener("click", (e) => {
 			this.close();
 		});
-		const dialogEl = this.shadowRoot.querySelector(".nidhugg-modal__dialog");
-		dialogEl.addEventListener("cancel", (event) => {
+		const dialogEl = this.shadowRoot?.querySelector(".nidhugg-modal__dialog");
+		dialogEl?.addEventListener("cancel", (event) => {
 			event.preventDefault();
 			this.close();
 		});
-		dialogEl.addEventListener("close", (event) => {
+		dialogEl?.addEventListener("close", (event) => {
 			event.preventDefault();
 			this.close();
 		});
-		dialogEl.addEventListener("mousedown", (event) => {
+		dialogEl?.addEventListener("mousedown", (event) => {
 			event.preventDefault();
 			if (event.target === dialogEl) {
 				this.close();
 			}
-			console["log"]("🐵: e", event.target, event);
 		});
 	}
 

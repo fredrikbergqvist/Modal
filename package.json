@@ -9,8 +9,8 @@
 		"type": "git",
 		"url": "https://github.com/fredrikbergqvist/NidhuggModal.git"
 	},
-	"main": "./src/modal.js",
-	"module": "./src/modal.js",
+	"main": "./src/modal.ts",
+	"module": "./src/modal.ts",
 	"scripts": {
 		"prettier:write": "yarn prettier --config ./.prettierrc --write ./**/*.{ts,css,js,html} --log-level warn",
 		"prettier:check": "yarn prettier --config ./.prettierrc --check ./src/**/*.{ts,css,js,html} --log-level warn"
@@ -18,14 +18,13 @@
 	"devDependencies": {
 		"@commitlint/cli": "19.6.0",
 		"@commitlint/config-conventional": "19.6.0",
-		"@sebbo2002/semantic-release-jsr": "^2.0.2",
-		"@semantic-release/changelog": "6.0.3",
-		"@semantic-release/commit-analyzer": "13.0.0",
-		"@semantic-release/git": "10.0.1",
-		"@semantic-release/github": "8.1.0",
-		"@semantic-release/release-notes-generator": "14.0.1",
+		"@rollup/plugin-typescript": "12.1.1",
 		"prettier": "3.4.1",
-		"release-please": "^16.15.0",
+		"release-please": "16.15.0",
+		"rollup": "4.28.0",
 		"typescript": "5.7.2"
+	},
+	"dependencies": {
+		"tslib": "^2.8.1"
 	}
 }

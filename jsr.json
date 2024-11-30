@@ -1,7 +1,7 @@
 {
   "name": "@nidhugg/modal",
   "version": "0.2.1",
-  "exports": "./src/modal.js",
+  "exports": "./src/modal.ts",
   "author": "Fredrik Bergqvist",
   "description": "A modal dialog web component",
   "license": "MIT",
@@ -9,7 +9,8 @@
     "include": [
       "LICENSE",
       "README.md",
-      "src/**/*.js"
+			"src/**/*.js",
+			"src/**/*.ts"
     ],
     "exclude": [
       "test/**/*"
