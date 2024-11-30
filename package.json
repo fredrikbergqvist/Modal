@@ -1,7 +1,7 @@
 {
   "name": "leonardo",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Fredrik Bergqvist",
   "description": "A modal dialog web component",
   "license": "MIT",
@@ -12,10 +12,10 @@
   "main": "./src/modal.js",
   "module": "./src/modal.js",
   "scripts": {},
-  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "19.6.0",
     "@commitlint/config-conventional": "19.6.0",
+    "@sebbo2002/semantic-release-jsr": "^2.0.2",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "13.0.0",
     "@semantic-release/git": "10.0.1",
@@ -57,6 +57,7 @@
           }
         }
       ],
+      "@sebbo2002/semantic-release-jsr",
       [
         "@semantic-release/changelog",
         {

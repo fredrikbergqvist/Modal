@@ -1,6 +1,6 @@
 {
   "name": "@nidhugg/modal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "exports": "./src/modal.js",
   "author": "Fredrik Bergqvist",
   "description": "A modal dialog web component",
