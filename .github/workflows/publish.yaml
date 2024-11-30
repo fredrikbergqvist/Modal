@@ -41,7 +41,7 @@ jobs:
 
   publish_jsr:
     name: Publish to JSR
-    needs: semantic_release
+    needs: release-please
     runs-on: ubuntu-latest
 
     permissions:
