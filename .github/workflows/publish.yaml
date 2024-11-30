@@ -3,9 +3,31 @@ on:
   push:
     branches:
       - main
-
+    paths-ignore:
+      - 'package.json'
+      - 'CHANGELOG.md'
 jobs:
-  publish:
+  semantic_release:
+    name: Semantic release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 22.11.0
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+      - name: Build app
+        run: npm build
+      - name: Semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx semantic-release
+
+  publish_jsr:
+    name: Publish to JSR
+    needs: semantic_release
     runs-on: ubuntu-latest
 
     permissions:
