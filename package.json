@@ -1,86 +1,92 @@
 {
-  "name": "nidhugg-modal",
-  "private": false,
-  "version": "0.2.0",
-  "author": "Fredrik Bergqvist",
-  "description": "A modal dialog web component",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fredrikbergqvist/NidhuggModal.git"
-  },
-  "main": "./src/modal.js",
-  "module": "./src/modal.js",
-  "scripts": {
-    "prettier:write": "yarn prettier --config ./.prettierrc --write ./**/*.{ts,css,js,html} --log-level warn",
-    "prettier:check": "yarn prettier --config ./.prettierrc --check ./src/**/*.{ts,css,js,html} --log-level warn"
+	"name": "nidhugg-modal",
+	"private": true,
+	"version": "0.2.0",
+	"author": "Fredrik Bergqvist",
+	"description": "A modal dialog web component",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fredrikbergqvist/NidhuggModal.git"
 	},
-  "devDependencies": {
-    "@commitlint/cli": "19.6.0",
-    "@commitlint/config-conventional": "19.6.0",
-    "@sebbo2002/semantic-release-jsr": "^2.0.2",
-    "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/commit-analyzer": "13.0.0",
-    "@semantic-release/git": "10.0.1",
-    "@semantic-release/github": "8.1.0",
-    "@semantic-release/release-notes-generator": "14.0.1",
-    "prettier": "3.4.1",
-    "typescript": "5.7.2"
-  },
-  "release": {
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "parserOpts": {
-            "noteKeywords": [
-              "BREAKING CHANGE",
-              "BREAKING CHANGES",
-              "BREAKING"
-            ]
-          }
-        }
-      ],
-      [
-        "@semantic-release/release-notes-generator",
-        {
-          "parserOpts": {
-            "noteKeywords": [
-              "BREAKING CHANGE",
-              "BREAKING CHANGES",
-              "BREAKING"
-            ]
-          },
-          "writerOpts": {
-            "commitsSort": [
-              "subject",
-              "scope"
-            ]
-          }
-        }
-      ],
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
+	"main": "./src/modal.js",
+	"module": "./src/modal.js",
+	"scripts": {
+		"prettier:write": "yarn prettier --config ./.prettierrc --write ./**/*.{ts,css,js,html} --log-level warn",
+		"prettier:check": "yarn prettier --config ./.prettierrc --check ./src/**/*.{ts,css,js,html} --log-level warn"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "19.6.0",
+		"@commitlint/config-conventional": "19.6.0",
+		"@sebbo2002/semantic-release-jsr": "^2.0.2",
+		"@semantic-release/changelog": "6.0.3",
+		"@semantic-release/commit-analyzer": "13.0.0",
+		"@semantic-release/git": "10.0.1",
+		"@semantic-release/github": "8.1.0",
+		"@semantic-release/release-notes-generator": "14.0.1",
+		"prettier": "3.4.1",
+		"typescript": "5.7.2"
+	},
+	"release": {
+		"branches": [
+			"main"
+		],
+		"plugins": [
+			[
+				"@semantic-release/commit-analyzer",
+				{
+					"parserOpts": {
+						"noteKeywords": [
+							"BREAKING CHANGE",
+							"BREAKING CHANGES",
+							"BREAKING"
+						]
+					}
+				}
+			],
+			[
+				"@semantic-release/release-notes-generator",
+				{
+					"parserOpts": {
+						"noteKeywords": [
+							"BREAKING CHANGE",
+							"BREAKING CHANGES",
+							"BREAKING"
+						]
+					},
+					"writerOpts": {
+						"commitsSort": [
+							"subject",
+							"scope"
+						]
+					}
+				}
+			],
+			[
+				"@semantic-release/changelog",
+				{
+					"changelogFile": "CHANGELOG.md"
+				}
+			],
 			"@sebbo2002/semantic-release-jsr",
-      "@semantic-release/github",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "package.json",
-            "jsr.json",
-            "CHANGELOG.md"
-          ],
-          "message": "ci(release): ${nextRelease.version} \n\n${nextRelease.notes}"
-        }
-      ]
-    ]
-  }
+			[
+				"@semantic-release/npm",
+				{
+					"npmPublish": false,
+				}
+			],
+			"@semantic-release/github",
+			[
+				"@semantic-release/git",
+				{
+					"assets": [
+						"package.json",
+						"jsr.json",
+						"CHANGELOG.md"
+					],
+					"message": "ci(release): ${nextRelease.version} \n\n${nextRelease.notes}"
+				}
+			]
+		]
+	}
 }
