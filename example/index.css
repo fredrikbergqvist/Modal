@@ -1,0 +1,69 @@
+:root {
+	--nidhugg-base-100: #2a303c;
+	--nidhugg-base-200: #242933;
+	--nidhugg-base-300: #20252e;
+	--nidhugg-base-content: #fefefe;
+	--nidhugg-neutral: #1c212b;
+	--nidhugg-neutral-content: #fefefe;
+	--nidhugg-rounded: 0.5rem;
+}
+
+.nidhugg-modal-open {
+	overflow: hidden;
+	filter: blur(2px);
+	height: 100vh;
+	width: 100vw;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #484d45;
+}
+
+h1 {
+	font-family: "Saira Condensed", sans-serif;
+	font-weight: 600;
+	font-style: normal;
+	font-size: 3rem;
+	color: var(--nidhugg-base-content);
+}
+
+h2[slot] {
+	margin: 0;
+}
+
+header,
+main {
+	margin: 0 auto;
+	max-width: 800px;
+}
+
+header {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 1rem;
+
+	img {
+		width: 100px;
+		height: auto;
+	}
+}
+
+section {
+	border-radius: var(--nidhugg-rounded);
+	background-color: #828876;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid var(--nidhugg-base-content);
+}
+
+button {
+	background-color: var(--nidhugg-base-100);
+	color: var(--nidhugg-base-content);
+	border: none;
+	border-radius: var(--nidhugg-rounded);
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}

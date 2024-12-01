@@ -13,6 +13,5 @@ ij_javascript_use_double_quotes = true
 
 
 [{*.htm,*.html,*.sht,*.shtm,*.shtml}]
-ij_html_add_new_line_before_tags = true
 ij_html_indent_size = 2
 ij_html_tab_width = 2

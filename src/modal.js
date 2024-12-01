@@ -10,14 +10,14 @@ const modalStyles = `
     width: max-content;
     padding: 0;
     background-color: var(--nidhugg-base-100, #2A303C);
-    color: var(--nidhugg-base-content, #B2CCD6);
+    color: var(--nidhugg-base-content, #fefefe);
     border-radius: var(--nidhugg-rounded, 0.5rem);
     border: 2px solid var(--nidhugg-neutral, #1C212B);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
   .nidhugg-modal__dialog[open]::backdrop {
     opacity: 0.6;
-    background-color: #111;
+    background-color: #000;
   }
   .nidhugg-modal__dialog[open] {
     @starting-style{
@@ -36,7 +36,7 @@ const modalStyles = `
   }
   .nidhugg-modal__dialog button {
     background-color: var(--nidhugg-base-100, #2A303C);
-    color: var(--nidhugg-base-content, #B2CCD6);
+    color: var(--nidhugg-base-content, #fefefe);
     transition: background-color, color 0.3s ease-in-out;
     border:none;
     border-radius: 50%;
@@ -50,7 +50,7 @@ const modalStyles = `
     cursor: pointer;
     &:hover {
       color: var(--nidhugg-base-200, #242933);
-      background-color: var(--nidhugg-base-content, #B2CCD6);
+      background-color: var(--nidhugg-base-content, #fefefe);
     }
   }
 
@@ -88,6 +88,21 @@ class NidhuggModal extends HTMLElement {
 	constructor() {
 		super();
 		this.close = this.close.bind(this);
+		this.closeEvent = new CustomEvent("close", {
+			bubbles: true,
+			cancelable: false,
+			composed: true,
+		});
+		this.cancelEvent = new CustomEvent("cancel", {
+			bubbles: true,
+			cancelable: false,
+			composed: true,
+		});
+		this.openEvent = new CustomEvent("open", {
+			bubbles: true,
+			cancelable: false,
+			composed: true,
+		});
 	}
 
 	open() {
@@ -99,6 +114,7 @@ class NidhuggModal extends HTMLElement {
 		if (dialog) {
 			dialog.showModal();
 			document.body.classList.add("nidhugg-modal-open");
+			this.shadowRoot.dispatchEvent(this.openEvent);
 		}
 	}
 
@@ -149,14 +165,17 @@ class NidhuggModal extends HTMLElement {
 		dialogCloseBtn?.addEventListener("click", (e) => {
 			this.close();
 		});
+
 		const dialogEl = this.shadowRoot?.querySelector(".nidhugg-modal__dialog");
 		dialogEl?.addEventListener("cancel", (event) => {
 			event.preventDefault();
 			this.close();
+			this.shadowRoot.dispatchEvent(this.cancelEvent);
 		});
 		dialogEl?.addEventListener("close", (event) => {
 			event.preventDefault();
 			this.close();
+			this.shadowRoot.dispatchEvent(this.closeEvent);
 		});
 		dialogEl?.addEventListener("mousedown", (event) => {
 			event.preventDefault();
@@ -175,8 +194,6 @@ class NidhuggModal extends HTMLElement {
 			if (this.hasAttribute("open")) {
 				return dialog.showModal();
 			}
-
-			dialog.close();
 		}
 	}
 

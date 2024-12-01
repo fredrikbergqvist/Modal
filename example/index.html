@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>🐉 Nidhugg Modal</title>
+	<link rel="stylesheet" type="text/css" href="index.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;&display=swap" rel="stylesheet" />
+</head>
+<body>
+<header>
+	<img src="nidhugg-logo_dark_bg.svg" alt="Nidhugg components dragon logo" width="544" height="570" />
+	<h1>Nidhugg Modal</h1>
+</header>
+<main>
+	<section>
+		<h2>Example:</h2>
+
+		<button onclick="document.getElementById('modal-1').showModal()">Open Modal with footer</button>
+		<p id="modal-1-events"></p>
+		<p id="modal-2-events"></p>
+
+		<button onclick="document.getElementById('modal-1').open()">Modal with longer text</button>
+		<nidhugg-modal id="modal-1">
+			<h2 slot="header">Hello World</h2>
+			<p slot="content">This is a test of the Nidhugg Modal</p>
+			<button slot="footer" onclick="document.getElementById('modal-1').close()">Close</button>
+		</nidhugg-modal>
+		<nidhugg-modal id="modal-2">
+			<h2 slot="header">Hello World</h2>
+			<div slot="content" style="max-width: 400px">
+				<blockquote>“Ph’nglui mglw’nafh Cthulhu R’lyeh wgah’nagl fhtagn.”</blockquote>
+				<p>
+					Legrasse had one point in advance of Professor Webb, for several among his mongrel prisoners had repeated to him what older
+					celebrants had told them the words meant. This text, as given, ran something like this:
+				</p>
+				<blockquote>“In his house at R’lyeh dead Cthulhu waits dreaming.”</blockquote>
+			</div>
+		</nidhugg-modal>
+	</section>
+</main>
+
+<script src="../src/modal.js"></script>
+<script>
+	document.getElementById("modal-1").addEventListener("close", () => {
+		const pEl = document.createElement("p");
+		pEl.innerHTML = "Event triggered: Modal 1 closed";
+		document.getElementById("modal-1-events").append(pEl);
+	});
+
+	document.getElementById("modal-1").addEventListener("open", () => {
+		const pEl = document.createElement("p");
+		pEl.innerHTML = "Event triggered: Modal 1 opened";
+		document.getElementById("modal-1-events").append(pEl);
+	});
+	document.getElementById("modal-1").addEventListener("cancel", () => {
+		const pEl = document.createElement("p");
+		pEl.innerHTML = "Event triggered: Modal 1 canceled";
+		document.getElementById("modal-1-events").append(pEl);
+	});
+</script>
+</body>
+</html>
