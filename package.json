@@ -1,7 +1,7 @@
 {
 	"name": "nidhugg-modal",
 	"private": "true",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"author": "Fredrik Bergqvist",
 	"description": "A modal dialog web component",
 	"license": "MIT",
