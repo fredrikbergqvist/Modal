@@ -26,6 +26,7 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
           package-name: release-please-action
+          skip-github-pull-request: true
 
   publish_jsr:
     name: Publish to JSR

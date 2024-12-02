@@ -8,8 +8,7 @@
 					"type": "json",
 					"path": "jsr.json",
 					"jsonpath": "$.version"
-				},
-				"src/modal.js"
+				}
 			]
 		}
 	}
