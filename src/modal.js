@@ -60,7 +60,7 @@ const modalStyles = `
   }
   .nidhugg-modal__dialog footer {
     background-color: var(--nidhugg-base-100, #2A303C);
-    padding: 0 1rem 1rem;
+    padding: 1rem;
   }
 </style>
 `;
@@ -136,16 +136,16 @@ class NidhuggModal extends HTMLElement {
 		const headerTemplate = document.createElement("template");
 
 		headerTemplate.innerHTML = `${modalStyles}
-    <dialog class="nidhugg-modal__dialog">
+    <dialog class="nidhugg-modal__dialog" part="dialog">
     	<div>
-				<header>
+				<header part="header">
 					<button id="nidhugg-modal-close-btn" type="button" title="Close modal" autofocus>x</button>
 					<slot name="header"></slot>
 				</header>
-				<main class="nid-modal__main">
+				<main part="content" class="nid-modal__main">
 					<slot name="content"></slot>
 				</main>
-				<footer class="nid-modal__footer">
+				<footer part="footer" class="nid-modal__footer">
 					<slot name="footer"></slot>
 				</footer>
       </div>

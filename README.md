@@ -37,6 +37,37 @@ The package can be found here: https://jsr.io/@nidhugg/modal
 
 ## Styling
 
+### Parts
+
+To change styling of the internal parts of the modal, you can use the `::part`-selector.
+
+The modal has the following parts:
+
+- `dialog`: The dialog element.
+- `header`: The header element of the modal.
+- `content`: The content of the modal.
+- `footer`: The footer of the modal.
+
+```css
+/* Example: */
+nidhugg-modal::part(header) {
+	background-color: var(--nidhugg-base-100);
+	color: var(--nidhugg-base-content);
+}
+
+nidhugg-modal::part(content) {
+	background-color: var(--nidhugg-base-200);
+	color: var(--nidhugg-base-content);
+}
+
+nidhugg-modal::part(footer) {
+	background-color: var(--nidhugg-base-100);
+	color: var(--nidhugg-base-content);
+}
+```
+
+### CSS Custom variables
+
 The modal can be styled using CSS custom variables. The following variables are available:
 
 ```css
