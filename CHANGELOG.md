@@ -5,6 +5,19 @@
 
 * clicking outside the modal will now trigger close ([4a341c5](https://github.com/fredrikbergqvist/NidhuggModal/commit/4a341c5b2193268baa623a52d80fe31047555370))
 
+## [0.4.0](https://github.com/fredrikbergqvist/NidhuggModal/compare/v0.3.0...v0.4.0) (2024-12-02)
+
+
+### Features
+
+* added CSS parts to the template ([43f4417](https://github.com/fredrikbergqvist/NidhuggModal/commit/43f4417fc6ba08aefcbd650974708fcc77c80c72))
+
+
+### Bug Fixes
+
+* tweak release-please ([01b98d1](https://github.com/fredrikbergqvist/NidhuggModal/commit/01b98d15dde90d14045647ee8db0a8afe8981978))
+* tweak release-please ([f0b47fc](https://github.com/fredrikbergqvist/NidhuggModal/commit/f0b47fc03a36c5b74b5628bd7576d80352f77f3e))
+
 ## [0.3.0](https://github.com/fredrikbergqvist/NidhuggModal/compare/v0.2.0...v0.3.0) (2024-12-01)
 
 
