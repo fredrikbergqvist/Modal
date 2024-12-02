@@ -1,0 +1,29 @@
+name: Publish
+on:
+  push:
+    branches:
+      - develop
+    paths-ignore:
+      - "package.json"
+      - "jsr.json"
+      - "CHANGELOG.md"
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          release-type: node
+          token: ${{ secrets.GH_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+          package-name: release-please-action
+          skip-github-pull-request: true
