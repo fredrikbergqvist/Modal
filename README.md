@@ -18,12 +18,16 @@ The package can be found here: https://jsr.io/@nidhugg/modal
  yarn dlx jsr add @nidhugg/modal
 ```
 
+### GitHub:
+
+[https://github.com/fredrikbergqvist/NidhuggModal](https://github.com/fredrikbergqvist/NidhuggModal)
+
 ## Basic usage
 
-1. Include the script in your HTML file by importing the `nidhugg-modal.js` file.
+1. Include the script in your HTML file by importing the `modal.js` file.
 	- _Note:_ The js file is not minified, so ideally you should minify it and add it to your bundle before using it in
 		production.
-2. Add the `nidhugg-modal` element to your HTML file.
+2. Add the `modal` element to your HTML file.
 3. Add content to the modal using the `header`, `content`, and `footer` slots.
 
 ```html

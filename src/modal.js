@@ -1,67 +1,67 @@
 const modalStyles = `
 <style>
-  .nidhugg-modal__dialog{
-    display: none;
-    transition: all 0.3s ease-in-out;
-    opacity: 1;
-    transform: scale(1);
-    position: fixed;
-    z-index: 10;
-    width: max-content;
-    padding: 0;
-    background-color: var(--nidhugg-base-100, #2A303C);
-    color: var(--nidhugg-base-content, #fefefe);
-    border-radius: var(--nidhugg-rounded, 0.5rem);
-    border: 2px solid var(--nidhugg-neutral, #1C212B);
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-  }
-  .nidhugg-modal__dialog[open]::backdrop {
-    opacity: 0.6;
-    background-color: #000;
-  }
-  .nidhugg-modal__dialog[open] {
-    @starting-style{
-      opacity: 0;
-      transform: scale(0);
-    }
-    display: block;
-  }
-  .nidhugg-modal__dialog header {
-    background-color: var(--nidhugg-base-300, #20252E);
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 1rem;
-  }
-  .nidhugg-modal__dialog button {
-    background-color: var(--nidhugg-base-100, #2A303C);
-    color: var(--nidhugg-base-content, #fefefe);
-    transition: background-color, color 0.3s ease-in-out;
-    border:none;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -0.5rem;
-    margin-right: -0.5rem;
-    cursor: pointer;
-    &:hover {
-      color: var(--nidhugg-base-200, #242933);
-      background-color: var(--nidhugg-base-content, #fefefe);
-    }
-  }
+	.nidhugg-modal__dialog{
+		display: none;
+		transition: all 0.3s ease-in-out;
+		opacity: 1;
+		transform: scale(1);
+		position: fixed;
+		z-index: 10;
+		width: max-content;
+		padding: 0;
+		background-color: var(--nidhugg-base-100, #2A303C);
+		color: var(--nidhugg-base-content, #fefefe);
+		border-radius: var(--nidhugg-rounded, 0.5rem);
+		border: 2px solid var(--nidhugg-neutral, #1C212B);
+		box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+	}
+	.nidhugg-modal__dialog[open]::backdrop {
+		opacity: 0.6;
+		background-color: #000;
+	}
+	.nidhugg-modal__dialog[open] {
+		@starting-style{
+			opacity: 0;
+			transform: scale(0);
+		}
+		display: block;
+	}
+	.nidhugg-modal__dialog header {
+		background-color: var(--nidhugg-base-300, #20252E);
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		align-items: flex-start;
+		padding: 1rem;
+	}
+	.nidhugg-modal__dialog button {
+		background-color: var(--nidhugg-base-100, #2A303C);
+		color: var(--nidhugg-base-content, #fefefe);
+		transition: background-color, color 0.3s ease-in-out;
+		border:none;
+		border-radius: 50%;
+		width: 2rem;
+		height: 2rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: -0.5rem;
+		margin-right: -0.5rem;
+		cursor: pointer;
+		&:hover {
+			color: var(--nidhugg-base-200, #242933);
+			background-color: var(--nidhugg-base-content, #fefefe);
+		}
+	}
 
-  .nidhugg-modal__dialog main {
-    background-color: var(--nidhugg-base-100, #2A303C);
-    padding: 0 1rem 1rem;
-  }
-  .nidhugg-modal__dialog footer {
-    background-color: var(--nidhugg-base-100, #2A303C);
-    padding: 1rem;
-  }
+	.nidhugg-modal__dialog main {
+		background-color: var(--nidhugg-base-100, #2A303C);
+		padding: 0 1rem 1rem;
+	}
+	.nidhugg-modal__dialog footer {
+		background-color: var(--nidhugg-base-100, #2A303C);
+		padding: 1rem;
+	}
 </style>
 `;
 
@@ -84,6 +84,9 @@ const modalStyles = `
  */
 class NidhuggModal extends HTMLElement {
 	static observedAttributes = ["open"];
+	static {
+		customElements.define("nidhugg-modal", this);
+	}
 
 	constructor() {
 		super();
@@ -105,12 +108,16 @@ class NidhuggModal extends HTMLElement {
 		});
 	}
 
+	get Dialog() {
+		return this.shadowRoot?.querySelector("dialog");
+	}
+
 	open() {
 		this.showModal();
 	}
 
 	showModal() {
-		const dialog = this.shadowRoot?.querySelector("dialog");
+		const dialog = this.Dialog;
 		if (dialog) {
 			dialog.showModal();
 			document.body.classList.add("nidhugg-modal-open");
@@ -119,7 +126,7 @@ class NidhuggModal extends HTMLElement {
 	}
 
 	close() {
-		const dialog = this.shadowRoot?.querySelector("dialog");
+		const dialog = this.Dialog;
 		if (dialog) {
 			dialog.style.opacity = "0";
 			dialog.style.transform = "scale(0)";
@@ -136,10 +143,13 @@ class NidhuggModal extends HTMLElement {
 		const headerTemplate = document.createElement("template");
 
 		headerTemplate.innerHTML = `${modalStyles}
-    <dialog class="nidhugg-modal__dialog" part="dialog">
-    	<div>
+		<dialog class="nidhugg-modal__dialog" part="dialog">
+			<div>
 				<header part="header">
-					<button id="nidhugg-modal-close-btn" type="button" title="Close modal" autofocus>x</button>
+
+					<form formmethod="dialog">
+						<button id="nidhugg-modal-close-btn" type="submit" title="Close modal" autofocus>x</button>
+					</form>
 					<slot name="header"></slot>
 				</header>
 				<main part="content" class="nid-modal__main">
@@ -148,8 +158,8 @@ class NidhuggModal extends HTMLElement {
 				<footer part="footer" class="nid-modal__footer">
 					<slot name="footer"></slot>
 				</footer>
-      </div>
-    </dialog>`;
+			</div>
+		</dialog>`;
 
 		this.shadowRoot?.appendChild(headerTemplate.content.cloneNode(true));
 		if (this.hasAttribute("open")) {
@@ -161,12 +171,7 @@ class NidhuggModal extends HTMLElement {
 		this.attachShadow({ mode: "open" });
 		this.populateElements();
 
-		const dialogCloseBtn = this.shadowRoot?.querySelector("#nidhugg-modal-close-btn");
-		dialogCloseBtn?.addEventListener("click", (e) => {
-			this.close();
-		});
-
-		const dialogEl = this.shadowRoot?.querySelector(".nidhugg-modal__dialog");
+		const dialogEl = this.Dialog;
 		dialogEl?.addEventListener("cancel", (event) => {
 			event.preventDefault();
 			this.close();
@@ -196,10 +201,4 @@ class NidhuggModal extends HTMLElement {
 			}
 		}
 	}
-
-	dispatchEvent(event) {
-		return false;
-	}
 }
-
-customElements.define("nidhugg-modal", NidhuggModal);

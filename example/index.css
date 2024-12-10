@@ -29,6 +29,7 @@
 body {
 	font-family: Arial, sans-serif;
 	background-color: #484d45;
+	margin: 0;
 }
 
 h1 {
@@ -43,18 +44,24 @@ h2[slot] {
 	margin: 0;
 }
 
+section,
 header,
 main {
-	margin: 0 auto;
-	max-width: 800px;
+	& > .content {
+		max-width: 800px;
+		margin: 0 auto;
+	}
 }
 
 header {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 1rem;
-	margin-bottom: 1rem;
+	background-color: #323630;
+
+	.content {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 1rem;
+	}
 
 	img {
 		width: 100px;
@@ -63,11 +70,8 @@ header {
 }
 
 section {
-	border-radius: var(--nidhugg-rounded);
 	background-color: #828876;
-	padding: 1rem;
-	margin-bottom: 1rem;
-	border: 1px solid var(--nidhugg-base-content);
+	padding: 2rem 1rem;
 }
 
 button {
@@ -84,3 +88,4 @@ nidhugg-modal::part(footer) {
 	justify-content: flex-end;
 	background-color: #1c212b;
 }
+
